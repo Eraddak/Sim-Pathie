@@ -1,0 +1,15 @@
+Export/
+Library/
+Logs/
+obj/
+Packages/
+ProjectSettings/
+Temp/
+.vs/
+
+Assets/TextMesh Pro/
+
+*.meta
+*.csproj
+*.sln
+*.apk
