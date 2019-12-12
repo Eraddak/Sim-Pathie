@@ -9,7 +9,6 @@ Temp/
 
 Assets/TextMesh Pro/
 
-*.meta
 *.csproj
 *.sln
 *.apk
