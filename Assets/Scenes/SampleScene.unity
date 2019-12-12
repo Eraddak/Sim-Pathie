@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -267,16 +268,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 257190531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f52efe6a991374aa69bd6cbf7ee541, type: 3}
+  m_Script: {fileID: 11500000, guid: 422584a5247e19a42807af516c8d42bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wishedIntensity: {fileID: 2015514767}
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0, g: 0, b: 0, a: 0}
   refreshPeriod: 0.5
-  smears:
-  - position: {x: 50, y: 50}
-    coeff: 1
-    isReversed: 1
 --- !u!114 &257190536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,7 +930,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1907939446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93822f946378315458bbeac82257e84a, type: 3}
+  m_Script: {fileID: 11500000, guid: aeea1c9d291ff7f44865fc2713874dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1907939449
