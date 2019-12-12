@@ -18,7 +18,7 @@ public class CamDisplay : MonoBehaviour
 
         foreach (WebCamDevice d in devices)
         {
-            if (d.isFrontFacing)
+            if (!d.isFrontFacing)
             {
                 backCam = new WebCamTexture(d.name, Screen.width, Screen.height);
             }

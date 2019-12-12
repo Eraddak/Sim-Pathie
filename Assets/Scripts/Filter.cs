@@ -7,13 +7,13 @@ public abstract class Filter : MonoBehaviour
 {
     public Slider wishedIntensity;
     public Color color;
-    public float refreshPeriod = 1f;
+    public float refreshPeriod = 0.5f; // increase performances
     protected Vector2Int screenSize;
     protected float lastIntensity;
 
     private float clock = 0f;
 
-    void Start()
+    protected virtual void Start()
     {
         GetComponent<RawImage>().color = color;
         lastIntensity = wishedIntensity.value;
@@ -27,7 +27,7 @@ public abstract class Filter : MonoBehaviour
 
     private void Update()
     {
-        refreshPeriod += Time.deltaTime;
+        clock += Time.deltaTime;
         if (clock > refreshPeriod)
         {
             if (lastIntensity != wishedIntensity.value)
