@@ -8,6 +8,7 @@ Temp/
 .vs/
 
 Assets/TextMesh Pro/
+Assets/GoogleVR/
 
 *.csproj
 *.sln
