@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Filter : MonoBehaviour
+public class Filter : MonoBehaviour
 {
     public Slider wishedIntensity;
     public Color color;
     public float refreshPeriod = 0.5f; // increase performances
-    protected Vector2Int screenSize;
-    protected float lastIntensity;
-
+    public List<GameObject> smearsPrefabs; // The list of the smears prefabs. !!!! IT MUST FOLLOW THE INDEXATION OF THE SMEAR CONFIG LIST !!!!
+    private Vector2Int screenSize;
+    private float lastIntensity;
+    private List<Smear> smears;
     private float clock = 0f;
 
-    protected virtual void Start()
+    private void Start()
     {
-        GetComponent<RawImage>().color = color;
+        //GetComponent<RawImage>().color = color;
         lastIntensity = wishedIntensity.value;
         screenSize = new Vector2Int(Screen.width, Screen.height);
-
-        RefreshIntensity(lastIntensity);
-
         float ratio = (float)screenSize.x / (float)screenSize.y;
         GetComponent<AspectRatioFitter>().aspectRatio = ratio;
+        GetSmears();
+        RefreshIntensity(lastIntensity);
     }
 
     private void Update()
@@ -39,7 +39,27 @@ public abstract class Filter : MonoBehaviour
         }
     }
 
+    private void GetSmears()
+    {
+        List<SmearConfig> configs = FiltersConfigs.configs[FiltersConfigs.currentFilterIndex];
+        smears = new List<Smear>();
+        foreach (SmearConfig config in configs)
+        {
+            GameObject newSmearObject = Instantiate(smearsPrefabs[config.type]);
+            newSmearObject.transform.SetParent(transform);
+            Smear newSmear = newSmearObject.GetComponent<Smear>();
+            newSmear.RefreshPosition(config.position);
+            newSmear.SetCoeff(config.coeff);
+            smears.Add(newSmearObject.GetComponent<Smear>());
 
-    protected abstract void RefreshIntensity(float newIntensity);
+        }
+    }
+
+    private void RefreshIntensity(float newIntensity)
+    {
+        if (smears != null)
+            foreach (Smear smear in smears)
+                smear.UpdateSmear(newIntensity);
+    }
 
 }

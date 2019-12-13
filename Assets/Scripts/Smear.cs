@@ -1,23 +1,33 @@
 ﻿using UnityEngine;
 using System;
 
-[Serializable]
-public class Smear
+public abstract class Smear : MonoBehaviour
 {
     public Vector2 position = Vector2.zero;
-    public float coeff = 1;
-    public bool isReversed = false;
+    public float coeff = 1; // affects intensity (clamp 0-1)
+    protected float ratio = 1f;
 
-    public Smear()
+    private void Awake()
     {
-        position = Vector2.zero;
-        coeff = 1;
-        isReversed = false;
+        ratio = (float)Screen.width / (float)Screen.height;
+        RefreshPosition();
     }
-    public Smear(Vector2 position, float coeff, bool isReversed)
+
+    public abstract void UpdateSmear(float intensity);
+
+    public void RefreshPosition()
     {
-        this.position = position;
-        this.coeff = coeff;
-        this.isReversed = isReversed;
+        transform.position = new Vector3(position.x * Screen.width / 100f, position.y * Screen.height / 100f, 0f);
+    }
+
+    public void RefreshPosition(Vector2 newPosition)
+    {
+        position = newPosition;
+        transform.position = new Vector3(position.x * Screen.width / 100f, position.y * Screen.height / 100f, 0f);
+    }
+
+    public void SetCoeff(float newCoeff)
+    {
+        this.coeff = newCoeff;
     }
 }

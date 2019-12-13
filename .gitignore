@@ -8,8 +8,8 @@ Temp/
 .vs/
 
 Assets/TextMesh Pro/
+Assets/GoogleVR/
 
-*.meta
 *.csproj
 *.sln
 *.apk
