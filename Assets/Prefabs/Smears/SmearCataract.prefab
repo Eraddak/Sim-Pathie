@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3177977861803115541}
   - component: {fileID: 3177977861803115546}
   - component: {fileID: 3177977861803115547}
-  - component: {fileID: 3177977861803115540}
+  - component: {fileID: -6763776124371495912}
   m_Layer: 5
-  m_Name: SmearSimple
+  m_Name: SmearCataract
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 3177977861803115542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 78b7262431bd4134ab56fea933753d69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15ee795cffa4c0c43a0a1b1a4b668d5e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3177977861803115540
+--- !u!114 &-6763776124371495912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3177977861803115542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8216df48d4227f4ab13b97863884067, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f8a76fc234af9e4a8f5df9540310e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 50, y: 50}

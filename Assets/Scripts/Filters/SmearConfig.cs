@@ -6,6 +6,7 @@ public class SmearConfig {
     public Vector2 position;
     public float coeff;
     public int type; // 0 : SmearSimple ; 1 : SmearReversed ; 2 : SmearFull ; 3 : SmearGlaucome
+    public Color color;
 
     public SmearConfig()
     {
@@ -14,10 +15,11 @@ public class SmearConfig {
         type = 0;
     }
 
-    public SmearConfig(Vector2 position, float coeff, int type)
+    public SmearConfig(Vector2 position, float coeff, int type, Color color)
     {
         this.position = position;
         this.coeff = coeff;
         this.type = type;
+        this.color = color;
     }
 }

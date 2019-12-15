@@ -9,17 +9,19 @@ public class Filter : MonoBehaviour
     public Color color;
     public float refreshPeriod = 0.5f; // increase performances
     public List<GameObject> smearsPrefabs; // The list of the smears prefabs. !!!! IT MUST FOLLOW THE INDEXATION OF THE SMEAR CONFIG LIST !!!!
-    private Vector2Int screenSize;
+
     private float lastIntensity;
     private List<Smear> smears;
-    private float clock = 0f;
 
     private void Start()
     {
         //GetComponent<RawImage>().color = color;
-        lastIntensity = wishedIntensity.value;
-        screenSize = new Vector2Int(Screen.width, Screen.height);
-        float ratio = (float)screenSize.x / (float)screenSize.y;
+        if (wishedIntensity != null)
+            lastIntensity = wishedIntensity.value;
+        else
+            lastIntensity = FiltersConfigs.currentIntensity;
+
+        float ratio = (float)Screen.width / (float)Screen.height;
         GetComponent<AspectRatioFitter>().aspectRatio = ratio;
         GetSmears();
         RefreshIntensity(lastIntensity);
@@ -27,15 +29,12 @@ public class Filter : MonoBehaviour
 
     private void Update()
     {
-        clock += Time.deltaTime;
-        if (clock > refreshPeriod)
+        if (wishedIntensity == null)
+            RefreshIntensity(lastIntensity);
+        if (wishedIntensity != null && lastIntensity != wishedIntensity.value)
         {
-            if (lastIntensity != wishedIntensity.value)
-            {
-                lastIntensity = wishedIntensity.value;
-                RefreshIntensity(lastIntensity);
-            }
-            clock = 0f;
+            lastIntensity = wishedIntensity.value;
+            RefreshIntensity(lastIntensity);
         }
     }
 
@@ -47,6 +46,7 @@ public class Filter : MonoBehaviour
         {
             GameObject newSmearObject = Instantiate(smearsPrefabs[config.type]);
             newSmearObject.transform.SetParent(transform);
+            newSmearObject.GetComponent<Image>().color = config.color;
             Smear newSmear = newSmearObject.GetComponent<Smear>();
             newSmear.RefreshPosition(config.position);
             newSmear.SetCoeff(config.coeff);
@@ -55,7 +55,7 @@ public class Filter : MonoBehaviour
         }
     }
 
-    private void RefreshIntensity(float newIntensity)
+    public void RefreshIntensity(float newIntensity)
     {
         if (smears != null)
             foreach (Smear smear in smears)
