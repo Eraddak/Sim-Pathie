@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Filter : MonoBehaviour
 {
+    public CamDisplay camDisplayer;
     public Slider wishedIntensity;
     public Color color;
     public float refreshPeriod = 0.5f; // increase performances
@@ -12,10 +13,11 @@ public class Filter : MonoBehaviour
 
     private float lastIntensity;
     private List<Smear> smears;
+    private WebCamTexture webCamTexture;
+    private bool webCamInitialized = false;
 
     private void Start()
     {
-        //GetComponent<RawImage>().color = color;
         if (wishedIntensity != null)
             lastIntensity = wishedIntensity.value;
         else
@@ -36,6 +38,27 @@ public class Filter : MonoBehaviour
             lastIntensity = wishedIntensity.value;
             RefreshIntensity(lastIntensity);
         }
+        if (!webCamInitialized)
+        {
+            if (camDisplayer != null) {
+                this.webCamTexture = camDisplayer.webCamTexture;
+                webCamInitialized = true;
+            }
+        }
+        else
+        {
+            float sum = 0f;
+            for (int i = 0; i < Mathf.Min(webCamTexture.width, webCamTexture.height); i++)
+            {
+                Color pixel = webCamTexture.GetPixel(i, i);
+                sum += pixel.r;
+                sum += pixel.g;
+                sum += pixel.b;
+            }
+            sum /= Mathf.Min(webCamTexture.width, webCamTexture.height);
+            sum /= 3f;
+            RefreshColor(new Color(sum, sum, sum));
+        }
     }
 
     private void GetSmears()
@@ -46,20 +69,24 @@ public class Filter : MonoBehaviour
         {
             GameObject newSmearObject = Instantiate(smearsPrefabs[config.type]);
             newSmearObject.transform.SetParent(transform);
-            newSmearObject.GetComponent<Image>().color = config.color;
             Smear newSmear = newSmearObject.GetComponent<Smear>();
             newSmear.RefreshPosition(config.position);
             newSmear.SetCoeff(config.coeff);
             smears.Add(newSmearObject.GetComponent<Smear>());
-
         }
+    }
+
+    private void RefreshColor(Color color)
+    {
+        if (smears != null)
+            foreach (Smear smear in smears)
+                smear.SetColor(color);
     }
 
     public void RefreshIntensity(float newIntensity)
     {
         if (smears != null)
             foreach (Smear smear in smears)
-                smear.UpdateSmear(newIntensity);
+                smear.SetIntensity(newIntensity);
     }
-
 }

@@ -906,6 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9359bd8c92458254a952aa3e414e2abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camDisplayer: {fileID: 1701910487}
   wishedIntensity: {fileID: 411157201}
   color: {r: 1, g: 1, b: 1, a: 1}
   refreshPeriod: 0.5
@@ -1316,6 +1317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeea1c9d291ff7f44865fc2713874dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  webCamTexture: {fileID: 0}
 --- !u!114 &1701910488
 MonoBehaviour:
   m_ObjectHideFlags: 0

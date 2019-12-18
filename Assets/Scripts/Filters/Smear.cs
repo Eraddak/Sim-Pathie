@@ -8,10 +8,12 @@ public abstract class Smear : MonoBehaviour
     public Vector2 position = Vector2.zero;
     public float coeff = 1; // affects intensity (clamp 0-1)
     protected float ratio = 1f;
-
+    protected float intensity = 0f;
+    private Image color;
     private void Awake()
     {
         RefreshRatio();
+        color = GetComponent<Image>();
     }
 
     public abstract void UpdateSmear(float intensity);
@@ -31,10 +33,22 @@ public abstract class Smear : MonoBehaviour
     {
         this.coeff = newCoeff;
     }
+
     private void RefreshRatio()
     {
         ratio = (float)Screen.width / (float)Screen.height;
         RefreshPosition();
+    }
+
+    public void SetIntensity(float newIntensity)
+    {
+        intensity = newIntensity;
+        UpdateSmear(intensity);
+    }
+
+    public void SetColor(Color color)
+    {
+        this.color.color = new Color(color.r, color.g, color.b, this.color.color.a);
     }
 
     private void Update()

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CamDisplay : MonoBehaviour
 {
+    public WebCamTexture webCamTexture;
+
     private void Start()
     {
         WebCamDevice[] devices = WebCamTexture.devices;
@@ -21,6 +23,7 @@ public class CamDisplay : MonoBehaviour
             if (!d.isFrontFacing)
             {
                 backCam = new WebCamTexture(d.name, Screen.width, Screen.height);
+                this.webCamTexture = backCam;
             }
         }
 

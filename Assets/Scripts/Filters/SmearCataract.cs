@@ -10,6 +10,7 @@ public class SmearCataract : Smear
     private void Start()
     {
         currentColor = GetComponent<Image>();
+        UpdateSmear(intensity);
     }
 
     public override void UpdateSmear(float intensity)

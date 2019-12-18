@@ -24,10 +24,13 @@ public class AppManager : MonoBehaviour
     {
         if (blackScreen != null)
             blackScreen.SetActive(true);
-        Screen.orientation = orientation; // This instruction being async, we need to wait until it's finished, 
-                                          // or the start methods of the next scene will be wrong (as they depend from the screen size)
-        yield return new WaitUntil(() => Screen.orientation.Equals(orientation)); // It appears that waiting for this is not enough. Certainly that the variable is assigned before
-        yield return new WaitForSeconds(0.1f);                                    // the screen is actually rotated. Therefore we need to wait for an extra short time.
+        if (Screen.orientation != orientation)
+        {
+            Screen.orientation = orientation; // This instruction being async, we need to wait until it's finished, 
+                                              // or the start methods of the next scene will be wrong (as they depend from the screen size)
+            yield return new WaitUntil(() => Screen.orientation.Equals(orientation)); // It appears that waiting for this is not enough. Certainly that the variable is assigned before
+            yield return new WaitForSeconds(0.1f);                                    // the screen is actually rotated. Therefore we need to wait for an extra short time.
+        }
         SceneManager.LoadScene(sceneName);
         isLoading = false;
     }
@@ -39,10 +42,18 @@ public class AppManager : MonoBehaviour
         isLoading = true;
         ChangeFilterConfig(configIndex);
         Toggle toggle = GetComponentInChildren<Toggle>();
-        if (toggle.isOn)
-            StartCoroutine(RotateThenLoad(ScreenOrientation.LandscapeLeft, "Visual VR"));
+        if (toggle == null || toggle.isOn)
+            StartCoroutine(RotateThenLoad(ScreenOrientation.LandscapeLeft, "Visual VR Preview"));
         else
             StartCoroutine(RotateThenLoad(ScreenOrientation.LandscapeLeft, "Visual"));
+    }
+
+    public void LoadVisualVRScene()
+    {
+        if (isLoading)
+            return;
+        isLoading = true;
+        StartCoroutine(RotateThenLoad(ScreenOrientation.LandscapeLeft, "Visual VR"));
     }
 
     public void LoadUIScene()

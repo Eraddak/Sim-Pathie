@@ -12,20 +12,20 @@ public static class FiltersConfigs
     {
         new List<SmearConfig>() // 0 : DMLA
         {
-            new SmearConfig(new Vector2(50f, 50f), 1f, 0, Color.grey)
+            new SmearConfig(new Vector2(50f, 50f), 1f, 0)
         },
         new List<SmearConfig>() // 1 : Retinitis Pigmentosa
         {
-            new SmearConfig(new Vector2(50f, 50f), 1f, 1, Color.grey)
+            new SmearConfig(new Vector2(50f, 50f), 1f, 1)
         },
         new List<SmearConfig>() // 2 : Cataract
         {
-            new SmearConfig(new Vector2(50f, 50f), 1f, 2, Color.grey)
+            new SmearConfig(new Vector2(50f, 50f), 1f, 2)
         },
         new List<SmearConfig>() // 3 : Glaucome
         {
-            new SmearConfig(new Vector2(50f, 50f), 1f, 1, Color.black),
-            new SmearConfig(new Vector2(50f, 55f), 1f, 3, Color.black)
+            new SmearConfig(new Vector2(50f, 50f), 1f, 1),
+            new SmearConfig(new Vector2(50f, 55f), 1f, 3)
         }
     };
 }
