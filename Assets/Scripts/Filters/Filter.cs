@@ -47,17 +47,20 @@ public class Filter : MonoBehaviour
         }
         else
         {
-            float sum = 0f;
+            float sumR = 0f;
+            float sumG = 0f;
+            float sumB = 0f;
             for (int i = 0; i < Mathf.Min(webCamTexture.width, webCamTexture.height); i++)
             {
                 Color pixel = webCamTexture.GetPixel(i, i);
-                sum += pixel.r;
-                sum += pixel.g;
-                sum += pixel.b;
+                sumR += pixel.r;
+                sumG += pixel.g;
+                sumB += pixel.b;
             }
-            sum /= Mathf.Min(webCamTexture.width, webCamTexture.height);
-            sum /= 3f;
-            RefreshColor(new Color(sum, sum, sum));
+            sumR /= Mathf.Min(webCamTexture.width, webCamTexture.height);
+            sumG /= Mathf.Min(webCamTexture.width, webCamTexture.height);
+            sumB /= Mathf.Min(webCamTexture.width, webCamTexture.height);
+            RefreshColor(new Color(sumR, sumG, sumB));
         }
     }
 

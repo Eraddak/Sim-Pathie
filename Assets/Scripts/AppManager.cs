@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Android;
 
 public class AppManager : MonoBehaviour
 {
     public GameObject blackScreen;
 
     private static bool isLoading = false;
+
+
+    private void Start()
+    {
+        if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
+            Permission.RequestUserPermission(Permission.Camera);
+    }
 
     private void ChangeFilterConfig(int index)
     {
