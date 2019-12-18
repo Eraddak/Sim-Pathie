@@ -16,6 +16,9 @@ public class AppManager : MonoBehaviour
     {
         if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
             Permission.RequestUserPermission(Permission.Camera);
+
+        if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
+            Permission.RequestUserPermission(Permission.Microphone);
     }
 
     private void ChangeFilterConfig(int index)
