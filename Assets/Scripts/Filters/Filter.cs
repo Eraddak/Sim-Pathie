@@ -8,7 +8,6 @@ public class Filter : MonoBehaviour
     public CamDisplay camDisplayer;
     public Slider wishedIntensity;
     public Color color;
-    public float refreshPeriod = 0.5f; // increase performances
     public List<GameObject> smearsPrefabs; // The list of the smears prefabs. !!!! IT MUST FOLLOW THE INDEXATION OF THE SMEAR CONFIG LIST !!!!
 
     private float lastIntensity;
@@ -38,15 +37,15 @@ public class Filter : MonoBehaviour
             lastIntensity = wishedIntensity.value;
             RefreshIntensity(lastIntensity);
         }
-        if (!webCamInitialized)
+        if (!webCamInitialized) // Initialize the webCamTexture
         {
             if (camDisplayer != null) {
                 this.webCamTexture = camDisplayer.webCamTexture;
                 webCamInitialized = true;
             }
         }
-        else
-        {
+        else // Get a global color by browsing the diagonal of pixels and make a mean of it.
+        { // It allows to have more realistic smears.
             float sumR = 0f;
             float sumG = 0f;
             float sumB = 0f;
@@ -68,13 +67,14 @@ public class Filter : MonoBehaviour
     {
         List<SmearConfig> configs = FiltersConfigs.configs[FiltersConfigs.currentFilterIndex];
         smears = new List<Smear>();
-        foreach (SmearConfig config in configs)
+        foreach (SmearConfig config in configs) // Instantiate the smears depending on the chosen config
         {
             GameObject newSmearObject = Instantiate(smearsPrefabs[config.type]);
             newSmearObject.transform.SetParent(transform);
             Smear newSmear = newSmearObject.GetComponent<Smear>();
             newSmear.RefreshPosition(config.position);
             newSmear.SetCoeff(config.coeff);
+            newSmear.fitter = GetComponent<AspectRatioFitter>().aspectRatio;
             smears.Add(newSmearObject.GetComponent<Smear>());
         }
     }

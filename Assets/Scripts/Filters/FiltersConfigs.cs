@@ -37,6 +37,7 @@ public static class FiltersConfigs
             new SmearConfig(new Vector2(45f, 50f), 1, 4),
             new SmearConfig(new Vector2(60f, 10f), 1, 4),
             new SmearConfig(new Vector2(85f, 30f), 1, 4)
-        }
+        } 
+        // Add new pathologies here...
     };
 }

@@ -20,7 +20,7 @@ public class CamDisplay : MonoBehaviour
 
         foreach (WebCamDevice d in devices)
         {
-            if (!d.isFrontFacing)
+            if (!d.isFrontFacing) // We are looking for the back camera
             {
                 backCam = new WebCamTexture(d.name, Screen.width, Screen.height);
                 this.webCamTexture = backCam;
@@ -34,9 +34,9 @@ public class CamDisplay : MonoBehaviour
         }
 
         backCam.Play();
-        GetComponent<RawImage>().texture = backCam;
+        GetComponent<RawImage>().texture = backCam; // Apply the webCamTexture to a UI image
 
-        float ratio = (float)Screen.width / (float)Screen.height;
+        float ratio = (float)Screen.width / (float)Screen.height; // Set the AspectRatioFitter to fill the entire screen
         GetComponent<AspectRatioFitter>().aspectRatio = ratio;
     }
 }

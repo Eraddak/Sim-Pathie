@@ -14,7 +14,7 @@ public class AppManager : MonoBehaviour
 
     private void Start()
     {
-        if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
+        if (!Permission.HasUserAuthorizedPermission(Permission.Camera)) // Some devices require to be asked for permissions while others automatically do. This is for safety.
             Permission.RequestUserPermission(Permission.Camera);
 
         if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
@@ -52,9 +52,9 @@ public class AppManager : MonoBehaviour
             return;
         isLoading = true;
         ChangeFilterConfig(configIndex);
-        Toggle toggle = GetComponentInChildren<Toggle>();
+        Toggle toggle = GetComponentInChildren<Toggle>(); // Check if the VR check box is triggered.
         if (toggle == null || toggle.isOn)
-            StartCoroutine(RotateThenLoad(ScreenOrientation.LandscapeLeft, "Visual VR Preview"));
+            StartCoroutine(RotateThenLoad(ScreenOrientation.LandscapeLeft, "Visual VR Preview")); // We ask the device to rotate the screen then load the new scene (see above)
         else
             StartCoroutine(RotateThenLoad(ScreenOrientation.LandscapeLeft, "Visual"));
     }

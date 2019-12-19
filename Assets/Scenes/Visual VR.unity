@@ -440,14 +440,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9359bd8c92458254a952aa3e414e2abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camDisplayer: {fileID: 1907939448}
   wishedIntensity: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
-  refreshPeriod: 0.5
   smearsPrefabs:
   - {fileID: 3177977861803115542, guid: c8fb0bf04d8b5d6488278c727863b7f3, type: 3}
   - {fileID: 3177977861803115542, guid: 28c29d0e141dd4b4cbc2722706edfe94, type: 3}
   - {fileID: 3177977861803115542, guid: 389c39b4fa2032c4083778d29e533026, type: 3}
   - {fileID: 3177977861803115542, guid: 421a136b3df62774e8c61b8cce9530c5, type: 3}
+  - {fileID: 3177977861803115542, guid: 4e06ee12985b73f44a6cbd413650d4da, type: 3}
 --- !u!114 &1213485555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeea1c9d291ff7f44865fc2713874dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  webCamTexture: {fileID: 0}
 --- !u!114 &1907939449
 MonoBehaviour:
   m_ObjectHideFlags: 0
