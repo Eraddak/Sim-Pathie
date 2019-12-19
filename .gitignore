@@ -1,0 +1,16 @@
+Export/
+Library/
+Logs/
+obj/
+Packages/
+ProjectSettings/
+Temp/
+.vs/
+
+Assets/TextMesh Pro/
+Assets/GoogleVR/
+Assets/LibPD
+
+*.csproj
+*.sln
+*.apk
