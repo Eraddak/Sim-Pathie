@@ -1,0 +1,102 @@
+#N canvas -9 -9 1920 1026 16;
+#X obj 37 15 netreceive 32000;
+#X msg 28 67 \; percep bang \;;
+#X obj 194 220 noise~;
+#X obj 355 299 adc~;
+#X obj 346 366 *~ 1.5;
+#X obj 32 519 bng 15 250 50 0 empty acou empty 17 7 0 10 -262144 -1
+-1;
+#X obj 101 513 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 219 538 *~;
+#X obj 218 596 dac~;
+#X obj 144 511 0;
+#X text 245 661 acouphène;
+#X obj 769 38 adc~;
+#X obj 764 113 lop~ 2000;
+#X obj 644 233 bng 15 250 50 0 empty presby empty 17 7 0 10 -262144
+-1 -1;
+#X obj 671 284 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 748 377 *~;
+#X obj 747 435 dac~;
+#X obj 702 324 0;
+#X text 552 448 presbyacousie;
+#X obj 1193 27 adc~;
+#X obj 1197 74 lop~ 4000;
+#X obj 1119 46 bng 15 250 50 0 empty percep empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1125 87 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 1168 203 *~;
+#X obj 1167 261 dac~;
+#X obj 1134 142 0;
+#X text 1058 464 surdité de perception;
+#X obj 1676 120 adc~;
+#X obj 1523 58 bng 15 250 50 0 empty transm empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1540 95 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 1609 380 dac~;
+#X text 1503 475 surdité de transmission;
+#X obj 288 493 +~;
+#X obj 756 185 lop~ 2000;
+#X obj 1577 312 *~ 0.125;
+#X obj 1213 130 +~;
+#X msg 470 93 \; pd dsp 1;
+#X obj 448 24 loadbang;
+#X obj 289 85 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 290 28 receive percep;
+#X obj 218 439 *~ 0.5;
+#X obj 139 288 bp~ 2000 75;
+#X obj 1551 188 0;
+#X obj 1581 236 *~;
+#X text 16 704 noise produit un bruit blanc adc de l'autre côté est
+le micro on filtre ce bruit blanc avec un filtre passe bande centré
+sur 2000 Hz et avec un facteur de qualité de Q. Les objets *~ sont
+là pour faire varier l'amplitude du signal on ajoute ensuite ces deux
+sons avec + Le bang à droite de chaque patch sert à l'activer depuis
+unity;
+#X text 458 528 on filtre le son entrant par 2 filtres pass-bas du
+premier ordre pour avoir un filtre du second ordre on renvoie le son
+dans le dac si l'interupteur est activé pas le bang;
+#X text 965 391 filtre passe-bas du premier ordre de 4000Hz;
+#X text 1470 565 on diminue l'amplitude du signal avec le *~;
+#X connect 0 0 1 0;
+#X connect 2 0 41 0;
+#X connect 3 0 4 0;
+#X connect 4 0 32 0;
+#X connect 5 0 6 0;
+#X connect 6 0 9 0;
+#X connect 7 0 8 0;
+#X connect 7 0 8 1;
+#X connect 9 0 7 0;
+#X connect 11 0 12 0;
+#X connect 12 0 33 0;
+#X connect 13 0 14 0;
+#X connect 14 0 17 0;
+#X connect 15 0 16 0;
+#X connect 15 0 16 1;
+#X connect 17 0 15 0;
+#X connect 19 0 20 0;
+#X connect 20 0 35 0;
+#X connect 21 0 22 0;
+#X connect 22 0 25 0;
+#X connect 23 0 24 0;
+#X connect 23 0 24 1;
+#X connect 25 0 23 0;
+#X connect 27 0 43 1;
+#X connect 28 0 29 0;
+#X connect 29 0 42 0;
+#X connect 32 0 7 1;
+#X connect 33 0 15 1;
+#X connect 34 0 30 0;
+#X connect 34 0 30 1;
+#X connect 35 0 23 1;
+#X connect 37 0 36 0;
+#X connect 39 0 38 0;
+#X connect 40 0 32 0;
+#X connect 41 0 40 0;
+#X connect 42 0 43 0;
+#X connect 43 0 34 0;
